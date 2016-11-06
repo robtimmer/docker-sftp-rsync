@@ -16,7 +16,7 @@ if ( id ${USER} ); then
 else
     echo "INFO: User ${USER} does not exists, we create it"
     ENC_PASS=$(perl -e 'print crypt($ARGV[0], "password")' ${PASS})
-    useradd -d /data -m -p ${ENC_PASS} -u ${USER_UID} -s /bin/sh ${USER}
+    useradd -d /home/${USER} -m -p ${ENC_PASS} -u ${USER_UID} -s /bin/sh ${USER}
 fi
 
 # Validate group, else print a message
