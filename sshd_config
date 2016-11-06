@@ -63,13 +63,6 @@ AcceptEnv LANG LC_*
 
 Subsystem sftp /usr/lib/openssh/sftp-server
 
-# Restrict sFTP users to their own home directory
-Match group sftp
-ChrootDirectory /data/%u
-X11Forwarding no
-AllowTcpForwarding no
-ForceCommand internal-sftp
-
 # Set this to 'yes' to enable PAM authentication, account processing,
 # and session processing. If this is enabled, PAM authentication will
 # be allowed through the ChallengeResponseAuthentication and
@@ -80,3 +73,10 @@ ForceCommand internal-sftp
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
+
+# Restrict sFTP users to their own home directory
+Match group sftp
+ChrootDirectory /data/%u
+X11Forwarding no
+AllowTcpForwarding no
+ForceCommand internal-sftp
