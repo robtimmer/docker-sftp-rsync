@@ -17,6 +17,10 @@ else
     echo "INFO: User ${USER} does not exist, creating it"
     ENC_PASS=$(perl -e 'print crypt($ARGV[0], "password")' ${PASS})
     useradd -d /data/${USER} -m -p ${ENC_PASS} -u ${USER_UID} -s /bin/sh ${USER}
+    # Set ownership
+    echo "INFO: Setting ownerships"
+    chown root:root /data/${USER}
+    find /data/${USER} -type f -exec chown root:root {} +
 fi
 
 # Add group for sftp users and add USER to it, when it does not exists
