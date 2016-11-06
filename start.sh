@@ -14,9 +14,20 @@ done
 if ( id ${USER} ); then
     echo "INFO: User ${USER} is valid"
 else
-    echo "INFO: User ${USER} does not exists, we create it"
+    echo "INFO: User ${USER} does not exist, creating it"
     ENC_PASS=$(perl -e 'print crypt($ARGV[0], "password")' ${PASS})
     useradd -d /data/${USER} -m -p ${ENC_PASS} -u ${USER_UID} -s /bin/sh ${USER}
+fi
+
+# Add group for sftp users and add USER to it, when it does not exists
+GROUP_SFTP_NAME="sftp"
+if ( getent group ${GROUP_SFTP_NAME} ); then
+    echo "INFO: Group ${GROUP_SFTP_NAME} is valid"
+else
+    echo "INFO: Group ${GROUP_SFTP_NAME} does not exist, creating it"
+    groupadd ${GROUP_SFTP_NAME}
+    echo "INFO: Add user ${USER} to sftp group ${GROUP_SFTP_NAME}"
+    usermod -a -G ${GROUP_SFTP_NAME} ${USER}
 fi
 
 # Validate group, else print a message
