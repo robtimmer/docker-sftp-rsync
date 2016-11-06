@@ -39,12 +39,12 @@ GROUP_NAME=$(cut -d: -f1 < <(getent group ${GROUP_GID}))
 if ( getent group ${GROUP_GID} ); then
     echo "INFO: Group ${GROUP_NAME} is valid"
     
-    # Check if user is in group, else add it
+    # Check if user is in group, else add it (as primary)
     if ( id -nG "${USER}" | grep -qw "${GROUP_NAME}" ); then
         echo "INFO: User ${USER} is in group ${GROUP_NAME}"    
     else
         echo "INFO: Adding user ${USER} to group ${GROUP_NAME}"
-        usermod -a -G ${GROUP_NAME} ${USER}
+        usermod -a -g ${GROUP_NAME} ${USER}
     fi
 else
     echo "INFO: Group ${GROUP_NAME} does not exist!"
