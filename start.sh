@@ -44,7 +44,7 @@ if ( getent group ${GROUP_GID} ); then
         echo "INFO: User ${USER} is in group ${GROUP_NAME}"    
     else
         echo "INFO: Adding user ${USER} to group ${GROUP_NAME}"
-        usermod -a -g ${GROUP_NAME} ${USER}
+        usermod -g ${GROUP_NAME} ${USER}
     fi
 else
     echo "INFO: Group ${GROUP_NAME} does not exist!"
