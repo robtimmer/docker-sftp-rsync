@@ -20,7 +20,7 @@ else
     # Set ownership
     echo "INFO: Setting ownerships"
     chown root:root /data/${USER}
-    find /data/${USER} -type f -exec chown root:root {} +
+    find /data/${USER} -maxdepth 1 -type f -exec chown root:root {} +
 fi
 
 # Add group for sftp users and add USER to it, when it does not exists
