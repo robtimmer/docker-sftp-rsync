@@ -2,12 +2,10 @@
 
 # Generate SSH keys
 for type in rsa dsa ecdsa ed25519; do
-  if ! [ -e "/ssh/ssh_host_${type}_key" ]; then
-    echo "/ssh/ssh_host_${type}_key not found, generating..."
-    ssh-keygen -f "/ssh/ssh_host_${type}_key" -N '' -t ${type}
+  if ! [ -e "/etc/ssh/ssh_host_${type}_key" ]; then
+    echo "/etc/ssh/ssh_host_${type}_key not found, generating..."
+    ssh-keygen -f "/etc/ssh/ssh_host_${type}_key" -N '' -t ${type}
   fi
-
-  ln -sf "/ssh/ssh_host_${type}_key" "/etc/ssh/ssh_host_${type}_key"
 done
 
 # Check if user exists, else create it
