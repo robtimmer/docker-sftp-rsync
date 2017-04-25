@@ -15,7 +15,7 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_${DI_VE
 
 # Install dependencies
 RUN apt-get update \
- && apt-get install -y openssh-server mcrypt \
+ && apt-get install -y openssh-server mcrypt rsync \
  && mkdir /var/run/sshd && chmod 0755 /var/run/sshd \
  && echo "${DI_HASH}  /usr/local/bin/dumb-init" | sha256sum -c \
  && chmod +x /usr/local/bin/dumb-init

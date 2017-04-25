@@ -1,4 +1,4 @@
-# robtimmer/sftp
+# robtimmer/sftp-rsync
 
 To launch it and have your share listen on port 2022, just type:
 
